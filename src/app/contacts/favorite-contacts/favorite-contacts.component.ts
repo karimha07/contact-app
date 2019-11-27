@@ -26,7 +26,9 @@ export class FavoriteContactsComponent implements OnInit, OnChanges {
   }
 
   onFavEdit(i) {
+    
     this.router.navigate(['favorite-contacts', i]);
+
   }
 
   onFavDelete(i) {
