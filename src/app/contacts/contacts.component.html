@@ -1,0 +1,14 @@
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+         <app-contact-edit *ngIf="loadedSection === 'Edit'"></app-contact-edit>
+      </div>
+   </div>
+   <div class="row" >
+      <div class="col-md-5">
+         <app-contacts-list (sectionSelected)="onSelection($event)"></app-contacts-list>
+      </div>
+      <div class="col-md-7 row justify-content-center mt-3">
+        <router-outlet></router-outlet>
+   </div>
+   </div>

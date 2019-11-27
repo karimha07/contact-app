@@ -1,0 +1,55 @@
+<div class="row mt-2">
+   <div class="col-md-3 mb-2" 
+   *ngFor="let contact of favoritecontacts  | filter: contactService.filterContact; let i = index">
+      <!-- <div class="row">
+          <div class="col-10"> -->
+            <!-- <a 
+            href="#" 
+            class="list-group-item list-group-item-action " 
+            *ngFor="let contact of favoritecontacts">
+              <div class="d-flex w-100 ">
+                  <img 
+                  [src]="contact.imagePath" 
+                  alt="{{contact.name}}" 
+                  class="img-fluid  " 
+                  style="max-height: 50px;">
+                <h5 class="p-2 " style="margin-left: 50px;">{{contact.name}} {{contact.lastName}}</h5>
+              </div>
+            </a>-->
+            <div class="card" style="width: 10rem;">
+              <img 
+              [src]="contact.imagePath" 
+              class="card-img-top"
+              height="150px"
+              width="100" 
+              alt="{{contact.name}}">
+              <div class="card-body">
+                <h6 class="card-title ">{{contact.name}} {{contact.lastName}}</h6>
+                <p class="card-text"> {{contact.email}} <br> {{contact.phoneNumber}} </p>
+                <div class="row ">
+                  <div class="col-1">
+                     <a (click)="onFavEdit(i)"
+                     style="cursor: pointer;"
+                     >
+                     <i class="fas fa-edit text-primary"></i> </a>
+                  </div>
+                  <div class="col-1">
+                     <a (click)="onFavDelete(i)"
+                     style="cursor: pointer;">
+                     <i class="fas fa-trash text-danger"></i></a>
+                  </div>
+                  <div class="col-1">
+                     <a (click)="onUnFavorite(i)"
+                     style="cursor: pointer;">
+                      <i class="fas fa-star text-warning"></i> </a>
+                  </div>
+                  </div>
+              </div>
+            </div>
+          <!-- </div>
+        </div> -->
+   </div>
+   </div>
+
+ 
+ 

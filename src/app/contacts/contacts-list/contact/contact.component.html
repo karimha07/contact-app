@@ -1,0 +1,15 @@
+<a  
+    style="cursor: pointer;"
+    [routerLink]="[index]"
+    routerLinkActive="active"
+    class="list-group-item list-group-item-action"
+    >
+      <div class="d-flex w-100 ">
+          <img 
+          [src]="contact.imagePath" 
+          alt="{{contact.name}}" 
+          class="img-fluid  " 
+          style="max-height: 50px;">
+        <h5 class="p-2 " style="margin-left: 50px;">{{contact.name}} {{contact.lastName}}</h5>
+      </div>
+    </a>

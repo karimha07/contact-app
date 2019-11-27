@@ -1,0 +1,17 @@
+<div class="row" >
+  <div class="col-12">
+    <button class="btn btn-success"
+    (click)="onNewContact()"> New Contact
+  </button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-12" style="height: 400px; max-height: 400px;overflow-y: scroll;">
+    <app-contact 
+      *ngFor="let contactEl of contactService.contacts | filter: contactService.filterContact; let i = index" 
+      [contact]="contactEl"
+      [index]="i">
+    </app-contact>
+  </div>
+</div>

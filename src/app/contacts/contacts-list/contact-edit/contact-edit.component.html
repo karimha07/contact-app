@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="contactForm"  
+          (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-8">
+          <input type="text" 
+          class="form-control" 
+          id="name" 
+          placeholder="Name"
+          formControlName="name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lname" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-8">
+          <input type="text" 
+          class="form-control" 
+          id="lname" 
+          placeholder="Last Name" 
+          formControlName="lastName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-8">
+          <input type="email" 
+          class="form-control" 
+          id="email" 
+          placeholder="Email" 
+          formControlName="email">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="PhoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
+        <div class="col-sm-4">
+          <input type="tel" 
+          class="form-control" 
+          id="PhoneNumber" 
+          placeholder="Phone Number" 
+          formControlName="phoneNumber">
+        </div>
+      </div>
+      <div class="input-group mb-3">
+    
+            <label for="" class="mr-4"> Upload Image </label>
+          
+          <div class="custom-file">
+            <input 
+            type="file" 
+            class="custom-file-input" 
+            id="inputGroupFile01" 
+            (change)="onUploadFile($event)"
+            aria-describedby="inputGroupFileAddon01" #imagePath>
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+      <!-- <div class="row form-group">
+        <label for="imagePath" class="col-sm-2"> Image URL</label>
+        <div class="col-sm-8">
+          <input type="text" 
+          id="imagePath" 
+          class="form-control"
+          formControlName="imagePath">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+           <img [src]="imagePath.value" class="img-fluid"> 
+        </div>
+      </div> -->
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" 
+          class="btn btn-success" 
+          [disabled]="!contactForm.valid"
+          (click)="onLoadServers()"
+           >Save Contact</button>
+          <button 
+          type="button" 
+          class="btn 
+          btn-outline-danger ml-1"
+          (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

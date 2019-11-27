@@ -1,0 +1,62 @@
+<div class="container ml-2">
+   <div class="row justify-content-center">
+      
+         <img 
+         [src]="contact.imagePath" 
+         alt="{{contact.name}}" 
+         class="img-fluid"
+         style="height:200px; width: 200px;">
+      
+   </div>
+   <div class="row justify-content-center">
+      <h1>{{contact.name}} {{contact.lastName}}</h1>
+   </div>
+  
+    <div class="row justify-content-center">
+      <div class="col-1">
+         <a 
+         (click)="onEdit()"
+         style="cursor: pointer;">
+          <i class="fas fa-edit text-primary"></i> </a>
+      </div>
+      <div class="col-1">
+         <a 
+         (click)="onDelete()"
+         style="cursor: pointer;"> 
+         <i class="fas fa-trash text-danger"></i> </a>
+      </div>
+      
+      <div class="col-1">
+         <a 
+         (click)="onAddFav()"
+         style="cursor: pointer;"> 
+         <i class="fas fa-star text-warning"  *ngIf="isFavorite()"></i> 
+         <i class="far fa-star text-warning"  *ngIf="!isFavorite()"></i> 
+
+      </a>
+      </div>
+   </div>
+ 
+   <div class="row">
+      
+            <div class="input-group my-2">
+               <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"></i></span>
+               </div>
+               <input type="number" class="form-control" placeholder="{{contact.phoneNumber}}" disabled>
+            </div>
+      
+   </div>
+   <div class="row">
+      
+         <div class="input-group my-2">
+               <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
+               </div>
+               <a href="{{contact.email}}" class="form-control" style="background-color: #e9ecef;">
+                  {{contact.email}}
+               </a>
+         </div>
+      
+   </div>
+</div>
