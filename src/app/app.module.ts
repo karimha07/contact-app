@@ -15,6 +15,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContactStartComponent } from './contacts/contact-start/contact-start.component';
 import { FilterPipe } from './filter.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -30,7 +31,8 @@ import { FilterPipe } from './filter.pipe';
     FavoriteContactsComponent,
     DropdownDirective,
     ContactStartComponent,
-    FilterPipe
+    FilterPipe,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
