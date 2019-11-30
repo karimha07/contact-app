@@ -54,12 +54,12 @@ export class ContactEditComponent implements OnInit {
   onUploadFile(event) {
     const input = event.target;
     if (input.files && input.files[0]) {
-      const reader = new FileReader();
+      const reader: FileReader = new FileReader();
       reader.onload = (e) => {
         const newForm = Object.assign({}, this.contactForm.value);
         this.contactForm.setValue({
           ...newForm,
-          imagePath: e.target.result
+          imagePath: reader.result
         });
       };
       reader.readAsDataURL(input.files[0]);
