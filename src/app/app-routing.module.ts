@@ -15,8 +15,9 @@ const appRoutes: Routes = [
    ] },
    { path: 'newContact', component: ContactEditComponent},
    { path: 'edit/:id', component: ContactEditComponent},
-   {path: 'favorite-contacts', component: FavoriteContactsComponent },
-   {path: 'favorite-contacts/:id', component: ContactEditComponent },
+   {path: 'favorite-contacts', component: FavoriteContactsComponent, children: [
+      {path: ':id', component: ContactEditComponent }
+   ] },
    { path: 'not-found', component: PageNotFoundComponent},
    { path: '**', redirectTo: '/not-found' }
 

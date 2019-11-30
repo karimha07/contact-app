@@ -9,6 +9,6 @@
          <app-contacts-list (sectionSelected)="onSelection($event)"></app-contacts-list>
       </div>
       <div class="col-md-7 row justify-content-center mt-3">
-        <router-outlet></router-outlet>
+        <router-outlet *ngIf="display"></router-outlet>
    </div>
    </div>

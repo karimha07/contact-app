@@ -10,6 +10,7 @@ import { Contact } from '../../shared/contact.model';
 export class ContactComponent implements OnInit {
 @Input() contact: Contact;
 @Input() index: number;
+display = false;
 
   ngOnInit() {
   }
