@@ -9,7 +9,6 @@ import { ContactDetailComponent } from './contacts/contacts-list/contact-detail/
 import { ContactComponent } from './contacts/contacts-list/contact/contact.component';
 import { ContactEditComponent } from './contacts/contacts-list/contact-edit/contact-edit.component';
 import { FavoriteContactsComponent } from './contacts/favorite-contacts/favorite-contacts.component';
-import { DropdownDirective } from './contacts/shared/dropdown.directive';
 import { ContactService } from './contacts/shared/contact.service';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +28,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ContactComponent,
     ContactEditComponent,
     FavoriteContactsComponent,
-    DropdownDirective,
     ContactStartComponent,
     FilterPipe,
     PageNotFoundComponent

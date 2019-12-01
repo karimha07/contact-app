@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Contact } from '../../shared/contact.model';
 import { ContactService } from '../../shared/contact.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Params, ActivatedRoute, Router } from '@angular/router';
@@ -15,6 +14,7 @@ export class ContactEditComponent implements OnInit {
   @ViewChild('imagePath' , {static: true}) fileUpload: ElementRef;
   contactForm: FormGroup;
   idd = 'id';
+  favorite = false;
 
   constructor(private route: ActivatedRoute,
               private contactService: ContactService,
@@ -29,6 +29,15 @@ export class ContactEditComponent implements OnInit {
         this.initForm();
       }
     );
+  //   this.route.fragment
+  //   .subscribe(
+  //     (fragment: string) => {
+  //       if (fragment === 'fav') {
+  //         console.log(fragment, this.favorite, 'fragmenttttttttttt');
+  //         this.favorite = !this.favorite;
+  //         console.log(fragment, this.favorite, 'fragmenttttttttttt');
+  //       }
+  // });
   }
 
   onLoadServers() {
@@ -40,7 +49,8 @@ export class ContactEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      this.contactService.updateContact(this.id, this.contactForm.value);
+      if (this.favorite) { this.contactService.updateFavorite(this.id, this.contactForm.value);
+      } else { this.contactService.updateContact(this.id, this.contactForm.value); }
     } else if (!this.contactService.isPhoneTaken(this.id, this.contactForm.value.phoneNumber)) {
       this.contactService.addContact(this.contactForm.value) ;
     } else { alert('phone number is in your contacts list'); }
@@ -74,7 +84,17 @@ export class ContactEditComponent implements OnInit {
     let contactImagePath = '';
 
     if (this.editMode) {
-      const contact = this.contactService.getContact(this.id);
+      this.route.fragment
+      .subscribe(
+        (fragment: string) => {
+          if (fragment === 'fav') {
+            this.favorite = !this.favorite;
+          }
+    });
+      let contact;
+      if (this.favorite) {
+        contact = this.contactService.getFavorite(this.id);
+      } else { contact = this.contactService.getContact(this.id); }
       contactName = contact.name;
       contactLastName = contact.lastName;
       contactEmail = contact.email;
@@ -92,7 +112,7 @@ export class ContactEditComponent implements OnInit {
         Validators.maxLength(8),
         Validators.pattern('[0-9]+')  // validates input is digit
       ]),
-      imagePath : new FormControl(contactImagePath, Validators.required)
+      imagePath : new FormControl(contactImagePath, Validators.required),
     });
   }
 

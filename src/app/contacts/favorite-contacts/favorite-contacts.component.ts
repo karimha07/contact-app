@@ -10,37 +10,37 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FavoriteContactsComponent implements OnInit, OnChanges {
   index: number;
-
   favoritecontacts: Contact[] ;
+
   constructor(private contactService: ContactService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-   this.favoritecontacts =  this.contactService.getFavorite();
+   this.favoritecontacts =  this.contactService.getFavorites();
    this.index = this.route.snapshot.params.id;
   }
 
   ngOnChanges() {
-    this.favoritecontacts =  this.contactService.getFavorite();
+    this.favoritecontacts =  this.contactService.getFavorites();
   }
 
   onFavEdit(i) {
-    
-    this.router.navigate(['favorite-contacts', i]);
-
+    this.router.navigate(['favorite-contacts', i], {fragment: 'fav'});
+    this.favoritecontacts =  this.contactService.getFavorites();
   }
 
   onFavDelete(i) {
-    const id = this.contactService.contacts.findIndex(
-      contact => contact.phoneNumber === this.contactService.favoriteContacts[i].phoneNumber);
-    this.contactService.contacts.splice(id, 1);
-    this.favoritecontacts = this.contactService.favoriteContacts.splice(i, 1);
+    const phoneNumber = this.contactService.getFavorites()[i].phoneNumber;
+    this.contactService.deleteContact(phoneNumber);
     this.router.navigate(['']);
   }
 
   onUnFavorite(i) {
-    this.favoritecontacts = this.contactService.favoriteContacts.splice(i, 1);
+    // const phoneNumber = this.contactService.getFavorites()[i].phoneNumber;
+    const favoriteIndex = this.contactService.getContactIndex(i);
+    this.contactService.reverseFavoriteContact(favoriteIndex);
+    this.favoritecontacts = this.contactService.getFavorites();
     this.router.navigate(['']);
   }
 
