@@ -20,12 +20,12 @@ export class ContactsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.contactService.contactSelected
-    .subscribe(
-      (contact: Contact) => {
-        this.selectedContact = contact;
-      }
-    );
+    // this.contactService.contactSelected
+    // .subscribe(
+    //   (contact: Contact) => {
+    //     this.selectedContact = contact;
+    //   }
+    // );
     this.route.fragment
     .subscribe(
       (fragment: string) => {
