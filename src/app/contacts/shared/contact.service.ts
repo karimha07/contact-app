@@ -1,12 +1,13 @@
-import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Contact } from './contact.model';
-import { stringify } from 'querystring';
+// import { EventEmitter } from '@angular/core';
 
 export class ContactService {
-contactSelected = new EventEmitter<Contact>();
-// contactsChanged = new EventEmitter<Contact[]>();
+// contactSelected = new EventEmitter<Contact>();
+contactsChanged = new Subject<Contact[]>();
+
 filterContact = '';
-   public  contacts: Contact[] = [];
+   private  contacts: Contact[] = [];
 
   // public favoriteContacts: Contact[] = [];
 
@@ -31,7 +32,8 @@ filterContact = '';
    addContact(contact: Contact) {
       const newContact = new Contact(contact.name, contact.lastName, contact.email, contact.phoneNumber, contact.imagePath, false);
       this.contacts.push(newContact);
-      console.log(newContact, this.contacts);
+      this.contactsChanged.next(this.contacts.slice());
+      // console.log(newContact, this.contacts);
       // this.contactsChanged.emit(this.contacts.slice());
    }
 
@@ -47,6 +49,7 @@ filterContact = '';
    updateContact(index, contact: Contact) {
       const newContact = new Contact(contact.name, contact.lastName, contact.email, contact.phoneNumber, contact.imagePath, false);
       this.contacts[index] = newContact;
+      this.contactsChanged.next(this.contacts.slice());
    }
 
    // to get the index of Contact in the favorites
@@ -74,6 +77,7 @@ filterContact = '';
      const newContact = new Contact(contact.name, contact.lastName, contact.email, contact.phoneNumber, contact.imagePath, true);
    //   console.log('newContact : ' + stringify(newContact));
      this.contacts[contactIndex] = newContact;
+     this.contactsChanged.next(this.contacts.slice());
    }
 
    deleteContact(phoneNumber) {
@@ -83,6 +87,7 @@ filterContact = '';
       const arrayCopy = [...this.contacts];
       arrayCopy.splice(index, 1);
       this.contacts = arrayCopy;
+      this.contactsChanged.next(this.contacts.slice());
    }
 
    // deleteFavoriteContact(index: number) {
