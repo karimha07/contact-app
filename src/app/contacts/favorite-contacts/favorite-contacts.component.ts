@@ -1,23 +1,25 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { Contact } from '../shared/contact.model';
 import { ContactService } from '../shared/contact.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-favorite-contacts',
   templateUrl: './favorite-contacts.component.html',
   styleUrls: ['./favorite-contacts.component.css']
 })
-export class FavoriteContactsComponent implements OnInit, OnChanges {
+export class FavoriteContactsComponent implements OnInit, OnChanges, OnDestroy {
   index: number;
   favoritecontacts: Contact[] ;
+  subscription: Subscription;
 
   constructor(private contactService: ContactService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.contactService.contactsChanged
+    this.subscription = this.contactService.contactsChanged
         .subscribe(
       (favoritecontacts: Contact[]) => {
         this.favoritecontacts = favoritecontacts;
@@ -50,5 +52,9 @@ export class FavoriteContactsComponent implements OnInit, OnChanges {
     this.router.navigate(['']);
   }
 
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
 }
