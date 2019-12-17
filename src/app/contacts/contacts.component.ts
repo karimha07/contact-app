@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
-  selectedContact: Contact;
-  loadedSection = 'Contacts';
+  // selectedContact: Contact;
+  // loadedSection = 'Contacts';
   id: number;
   display = false;
 
@@ -44,8 +44,8 @@ export class ContactsComponent implements OnInit {
   //   } else { return false; }
   // }
 
-  onSelection(section: string) {
-    this.loadedSection = section;
-  }
+  // onSelection(section: string) {
+  //   this.loadedSection = section;
+  // }
 
 }

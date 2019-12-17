@@ -17,13 +17,13 @@ export class ContactsListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.contactService.contactsChanged
+      .subscribe(
+        (contacts: Contact[]) => {
+          this.contacts = contacts;
+        }
+      );
     this.contacts = this.contactService.getContacts();
-    // this.subscription = this.contactService.contactsChanged
-    // .subscribe(
-    //   (contacts: Contact[]) => {
-    //     this.contacts = contacts;
-    //   }
-    // );
   }
 
   onNewContact() {

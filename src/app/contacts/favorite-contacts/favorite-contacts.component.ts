@@ -17,8 +17,14 @@ export class FavoriteContactsComponent implements OnInit, OnChanges {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-   this.favoritecontacts =  this.contactService.getFavorites();
-   this.index = this.route.snapshot.params.id;
+    this.contactService.contactsChanged
+        .subscribe(
+      (favoritecontacts: Contact[]) => {
+        this.favoritecontacts = favoritecontacts;
+      }
+    );
+    this.favoritecontacts =  this.contactService.getFavorites();
+    this.index = this.route.snapshot.params.id;
   }
 
   ngOnChanges() {
